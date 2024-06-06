@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Right Align Bootstrap Buttons</title>
+    <title>Index</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -21,22 +21,22 @@
     <div class="m-3">
         <ul class="nav nav-tabs mt-1" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="home-tab" data-toggle="tab" data-target="#home" type="button"
-                    role="tab" aria-controls="home" aria-selected="true">Event Rules</button>
+                <button class="nav-link active" id="event-tab" data-toggle="tab" data-target="#event" type="button"
+                    role="tab" aria-controls="event" aria-selected="true">Event Rules</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="profile-tab" data-toggle="tab" data-target="#profile" type="button"
-                    role="tab" aria-controls="profile" aria-selected="false">Label Rules</button>
+                <button class="nav-link" id="label-tab" data-toggle="tab" data-target="#label" type="button"
+                    role="tab" aria-controls="label" aria-selected="false">Label Rules</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="profile-tab" data-toggle="tab" data-target="#enrichment" type="button"
-                    role="tab" aria-controls="profile" aria-selected="false">Enrichment Rules</button>
+                <button class="nav-link" id="enrichment-tab" data-toggle="tab" data-target="#enrichment" type="button"
+                    role="tab" aria-controls="enrichment" aria-selected="false">Enrichment Rules</button>
             </li>
         </ul>
 
         <div class="tab-content" id="myTabContent">
 
-            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="tab-pane fade show active" id="event" role="tabpanel" aria-labelledby="event-tab">
                 <h3>Total Events: 3</h3>
                 <a href="ruleForm.html?type=event">
                     <button class="btn btn-primary">
@@ -44,6 +44,9 @@
                     </button>
                 </a>
                 <input class="form-control mt-1" id="myInputEvents" type="text" placeholder="Search..">
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-link">configure columns</button>
+                </div>
                 <table class="table table-striped mt-2">
                     <thead>
                         <tr>
@@ -120,7 +123,7 @@
                                         title="Create rule from selected rule"><i class="bi bi-copy"></i></button>
                                 </a>
                                 <a href="ruleForm.html?type=event&action=copy">
-                                    <button class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top"
+                                <button class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top"
                                         title="Edit rule"><i class="bi bi-pencil-square"></i></button>
                                 </a>
                                 <button class="btn btn-outline-danger"><i class="bi bi-trash"></i></button>
@@ -132,11 +135,14 @@
                 </table>
             </div>
 
-            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="tab-pane fade" id="label" role="tabpanel" aria-labelledby="label-tab">
                 <a href="ruleForm.html?type=label"><button
                         class="btn btn-primary mt-2">+ New
                         Label</button></a>
                 <input class="form-control mt-1" id="myInputLabels" type="text" placeholder="Search..">
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-link">configure columns</button>
+                </div>
                 <table class="table table-striped mt-2">
                     <thead>
                         <tr>
@@ -203,9 +209,12 @@
             </div>
 
             <div class="tab-pane fade" id="enrichment" role="tabpanel" aria-labelledby="enrichment-tab">
-                <a href="ruleForm.html?type=label"><button
+                <a href="enrichmentForm.html?type=label"><button
                         class="btn btn-primary mt-2">+ New Enrichment</button></a>
                 <input class="form-control mt-1" id="myInputLabels" type="text" placeholder="Search..">
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-link">configure columns</button>
+                </div>
                 <table class="table table-striped mt-2">
                     <thead>
                         <tr>
@@ -231,11 +240,11 @@
                             <td>
                                 <button class="btn btn-outline-dark" data-toggle="tooltip" data-placement="top"
                                     title="Disable rule"><i class="bi bi-ban"></i></button>
-                                <a href="ruleForm.html?type=label&action=copy">
+                                <a href="enrichmentForm.html?action=copy">
                                     <button class="btn btn-outline-warning" data-toggle="tooltip" data-placement="top"
                                         title="Create rule from selected rule"><i class="bi bi-copy"></i></button>
                                 </a>
-                                <a href="ruleForm.html?type=label&action=copy">
+                                <a href="enrichmentForm.html?action=copy">
                                     <button class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top"
                                         title="Edit rule"><i class="bi bi-pencil-square"></i></button>
                                 </a>
@@ -265,16 +274,37 @@
             });
 
             var rule = {
+                name: "My Web Login Success Rule ",
                 category: "authentication",
                 type: "start",
                 kind: "event",
                 outcome: "success",
                 detail: "Login Console",
                 text: "Login success via console",
-                regex: "(?i)(ConsoleLoginSuccessTrap)|CLI: Login via console successful for user|H_Low S_platform_LOGIN_SUCCESS)(.*?)"
+                regex: ["(?i)(eas2WebLoginSuccessTrap|hm2WebLoginSuccessTrap|webserver|authentication|login via)",
+                "(?i)(H_Low S_platform_PRIVILEGE_LOGIN_SUCCESS|H_Low S_platform_LOGIN_SUCCESS)"]
             };
 
             localStorage.setItem("rule", JSON.stringify(rule));
+
+            var enrichmentRule = {
+                name: "My Web Login Host Rule ",
+                dittoAttributes: ["source","name"],
+                customAttributes: [
+                    {
+                        key:"source",
+                        value: "HTPP(S)"
+                    },
+                    {
+                        key:"user",
+                        value: "admin"
+                    }
+                ],
+                regex: ["(?i)(eas2WebLoginSuccessTrap|hm2WebLoginSuccessTrap|webserver|authentication|login via)",
+                "(?i)(H_Low S_platform_PRIVILEGE_LOGIN_SUCCESS|H_Low S_platform_LOGIN_SUCCESS)"]
+            };
+
+            localStorage.setItem("enrichmentRule", JSON.stringify(enrichmentRule));
         });
     </script>
 </body>

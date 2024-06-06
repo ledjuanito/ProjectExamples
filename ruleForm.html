@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Right Align Bootstrap Buttons</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <meta charset="utf-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" >
+    <title>Classification Rules</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
 
@@ -18,76 +18,78 @@
 <body>
     <div class="m-3">
         <h3 id="title">New Event</h3>
-        <form class="">
-            <div>
-                <h4>Classification</h4>
-                <div class="row">
-                    <div class="form-group col-6">
-                        <label>Category:</label>
-                        <select class="form-control" onchange="loadPipeline()" id="category">
-                            <option>Select one....</option>
-                            <option value="authentication">authentication</option>
-                            <option>api</option>
-                            <option>iam</option>
-                            <option>network</option>
-                            <option>....</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-6">
-                        <label>Type:</label>
-                        <select class="form-control" id="type">
-                            <option>Select one....</option>
-                            <option value="start">start</option>
-                            <option>end</option>
-                            <option>info</option>
-                        </select>
-                    </div>
+        <div>
+            <h4>Name</h4>
+            <input type="text" class="form-control" placeholder="my new rule" id="ruleName"/>
+        </div>
+        <div class="mt-2">
+            <h4>Classification</h4>
+            <div class="row">
+                <div class="form-group col-6">
+                    <label>Category:</label>
+                    <select class="form-control" onchange="loadPipeline()" id="category">
+                        <option>Select one....</option>
+                        <option value="authentication">authentication</option>
+                        <option>api</option>
+                        <option>iam</option>
+                        <option>network</option>
+                        <option>....</option>
+                    </select>
+                </div>
+                <div class="form-group col-6">
+                    <label>Type:</label>
+                    <select class="form-control" id="type">
+                        <option>Select one....</option>
+                        <option value="start">start</option>
+                        <option>end</option>
+                        <option>info</option>
+                    </select>
+                </div>
 
-                    <div class="form-group col-6">
-                        <label>Kind:</label>
-                        <select class="form-control" id="kind">
-                            <option>Select one....</option>
-                            <option value="event">event</option>
-                            <option>alert</option>
-                            <option>...</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-6">
-                        <label>Outcome:</label>
-                        <select class="form-control" required id="outcome">
-                            <option>Select one....</option>
-                            <option value="success">success</option>
-                            <option>failure</option>
-                            <option>unknown</option>
-                        </select>
-                    </div>
+                <div class="form-group col-6">
+                    <label>Kind:</label>
+                    <select class="form-control" id="kind">
+                        <option>Select one....</option>
+                        <option value="event">event</option>
+                        <option>alert</option>
+                        <option>...</option>
+                    </select>
+                </div>
+                <div class="form-group col-6">
+                    <label>Outcome:</label>
+                    <select class="form-control" required id="outcome">
+                        <option>Select one....</option>
+                        <option value="success">success</option>
+                        <option>failure</option>
+                        <option>unknown</option>
+                    </select>
+                </div>
 
+            </div>
+        </div>
+        <div class="mt-2 eventContainer">
+            <h4>Event</h4>
+            <div class="row">
+                <div class="form-group col-6">
+                    <label>Group:</label>
+                    <select class="form-control" onchange="loadPipeline()" id="detail">
+                        <option>Select one....</option>
+                        <option value="Login Console">Login Console</option>
+                        <option>Login SSH</option>
+                        <option>New...</option>
+                    </select>
+                </div>
+                <div class="form-group col-6">
+                    <label>Name (Text to display):</label>
+                    <select class="form-control" id="text">
+                        <option>Select one....</option>
+                        <option value="Login success via console">Login success via console</option>
+                        <option>Login failure via console</option>
+                        <option>New...</option>
+                    </select>
                 </div>
             </div>
-            <div class="mt-2 eventContainer">
-                <h4>Event</h4>
-                <div class="row">
-                    <div class="form-group col-6">
-                        <label>Group:</label>
-                        <select class="form-control" onchange="loadPipeline()" id="detail">
-                            <option>Select one....</option>
-                            <option value="Login Console">Login Console</option>
-                            <option>Login SSH</option>
-                            <option>New...</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-6">
-                        <label>Name (Text to display):</label>
-                        <select class="form-control" id="text">
-                            <option>Select one....</option>
-                            <option value="Login success via console">Login success via console</option>
-                            <option>Login failure via console</option>
-                            <option>New...</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </form>
+        </div>
 
 
         <div class="form-group mt-3">
@@ -98,41 +100,37 @@
                         <label>Log samples</label>
                     </div>
 
-                    <div class="col-4 row float right">
+                    <div class="col-2 row float right">
                         <div class="alert alert-success collapse col-6 text-center text-white" role="alert" id="match"
                             style="background-color:rgb(40 205 98)">
                             <strong>Match</strong>
                         </div>
+                    </div>
+                    <div class="col-2 row float right">
                         <button type="button" class="btn btn-link col-6">
                             <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions/Cheatsheet"
                                 target="_blank">Need Help?</a>
                         </button>
                     </div>
-                    <div class="card-body">
-
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="new keyword" aria-label="new keyword"
-                                aria-describedby="button-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i
-                                        class="bi bi-plus-lg"></i></button>
-                            </div>
-                        </div>
-                        <ul class="list-group">
-                            <li class="list-group-item">authentication <button class="btn btn-outline-danger"><i
-                                        class="bi bi-trash"></i></button></li>
-                            <li class="list-group-item">login <button class="btn btn-outline-danger"><i
-                                        class="bi bi-trash"></i></button></li>
-                        </ul>
-                    </div>
-                    
                 </div>
-                <textarea class="form-control" rows="3"></textarea>
-                <label>Regex</label>
-                <textarea class="form-control" rows="3" id="regex"></textarea>
-                <div class="d-flex justify-content-end mt-1">
-                    <button class="btn btn-warning float-right" type="button" data-toggle="collapse"
-                        data-target="#match" aria-expanded="false">Validate Regex</button>
+                <textarea class="form-control" rows="1"></textarea>
+                <div class="mt-2">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="new regex" aria-label="new keyword"
+                            aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-warning float-right" type="button" data-toggle="collapse"
+                                data-target="#match" aria-expanded="false">Validate Regex</button>
+                        </div>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i
+                                    class="bi bi-plus-lg"></i></button>
+                        </div>
+                    </div>
+                    <label>Regex</label>
+
+                    <ul class="list-group mt-1 " id="regexList">
+                    </ul>
                 </div>
             </div>
         </div>
@@ -158,11 +156,7 @@
                                         class="bi bi-plus-lg"></i></button>
                             </div>
                         </div>
-                        <ul class="list-group">
-                            <li class="list-group-item">authentication <button class="btn btn-outline-danger"><i
-                                        class="bi bi-trash"></i></button></li>
-                            <li class="list-group-item">login <button class="btn btn-outline-danger"><i
-                                        class="bi bi-trash"></i></button></li>
+                        <ul class="list-group" id="keywordList">
                         </ul>
                     </div>
                 </div>
@@ -170,8 +164,10 @@
         </div>
 
         <div class="d-flex justify-content-center">
-            <a href="index.html"><button type="button" class="btn btn-light m-5 ">Cancel</button></a>
-            <a href="index.html"><button type="button" class="btn btn-primary m-5 ">Save</button></a>
+            <a href="index.html"><button type="button"
+                    class="btn btn-light m-5 ">Cancel</button></a>
+            <a href="index.html"><button type="button"
+                    class="btn btn-primary m-5 ">Save</button></a>
         </div>
     </div>
 
@@ -194,26 +190,41 @@
             const urlParams = new URLSearchParams(window.location.search);
             const type = urlParams.get('type');
             const action = urlParams.get('action');
-            if(type == "label") {
+            if (type == "label") {
                 $('.eventContainer').hide();
                 $('#title').html("New Label");
             }
 
-            if (action == "copy"){
+            if (action == "copy") {
                 var rule = JSON.parse(localStorage.getItem("rule"));
+                $('#ruleName').val(rule.name);
                 $('#category').val(rule.category);
                 $('#type').val(rule.type);
                 $('#kind').val(rule.kind);
                 $('#outcome').val(rule.outcome);
                 $('#detail').val(rule.detail);
                 $('#text').val(rule.text);
-                $('#regex').val(rule.regex);
                 $('#title').html(type == 'label' ? "New Label From Existing Rule" : "New Event From Existing Rule");
+
+                rule.regex.forEach((regex) => {
+                    $('#regexList').append(
+                        '<li class="list-group-item d-flex justify-content-between">'
+                        + regex
+                        + '<button class="btn btn-outline-danger flex"><i class="bi bi-trash"></i></button>'
+                        + '</li>'
+                    );
+                });
+                loadKeywords();
             }
         })
 
         function loadPipeline() {
             var x = document.getElementById("category").value;
+            if (x == "authentication") {
+                loadKeywords();
+            } else {
+                $('#keywordList').empty();
+            }
             $("#loadMe").modal({
                 backdrop: "static", //remove ability to close modal with click
                 keyboard: false, //remove option to close with keyboard
@@ -222,6 +233,21 @@
             setTimeout(function () {
                 $("#loadMe").modal("hide");
             }, 1500);
+        }
+
+        function loadKeywords() {
+            $('#keywordList').append(
+                '<li class="list-group-item d-flex justify-content-between">'
+                + 'authentication'
+                + '<button class="btn btn-outline-danger flex"><i class="bi bi-trash"></i></button>'
+                + '</li>'
+            );
+            $('#keywordList').append(
+                '<li class="list-group-item d-flex justify-content-between">'
+                + 'login'
+                + '<button class="btn btn-outline-danger flex"><i class="bi bi-trash"></i></button>'
+                + '</li>'
+            );
         }
 
     </script>
