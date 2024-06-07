@@ -176,7 +176,7 @@
                 $('#outcome').val(rule.outcome);
                 $('#detail').val(rule.detail);
                 $('#text').val(rule.text);
-                $('#title').html(type == 'label' ? "New Label From Existing Rule" : "New Event From Existing Rule");
+                $('#title').html(action == 'copy' ? "New Label From Existing Rule" : "New Event From Existing Rule");
 
                 rule.regex.forEach((regex) => {
                     $('#regexList').append(
