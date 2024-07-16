@@ -30,10 +30,9 @@ $(document).ready(function () {
         $('#outcome').val(rule.outcome);
         $('#detail').val(rule.detail);
         $('#text').val(rule.text);
-        $('#title').html(action == 'copy' ? "New Label From Existing Rule" : "New Event From Existing Rule");
+        $('#title').html(action == 'copy' ? "New Enrichment From Existing Rule" : "New Event From Existing Rule");
 
         regexRules = rule.regex;
-        loadKeywords();
     }
 
 
