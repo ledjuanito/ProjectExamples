@@ -5,6 +5,7 @@ let deviceAttributes = [];
 let customAttributes = [];
 
 let newRegex;
+let newRegexAttribute = "body.message";
 let attributeName;
 let attributeValue;
 let newAttribute;
@@ -44,6 +45,7 @@ $(document).ready(function () {
             deviceAttributes: deviceAttributes,
             customAttributes: customAttributes,
             newRegex: newRegex,
+            newRegexAttribute: newRegexAttribute,
             newAttribute: newAttribute,
             newCustomAttribute: newCustomAttribute,
             attributeName: attributeName,
@@ -56,9 +58,10 @@ $(document).ready(function () {
                 this.regexRules = this.regexRules.filter((x) => x != regex);
             },
             addRegex: function () {
-                if (this.newRegex != "") {
-                    this.regexRules.push(this.newRegex);
+                if (this.newRegex != "" && this.newRegexAttribute != "") {
+                    this.regexRules.push({'attr': this.newRegexAttribute, 'regex': this.newRegex});
                     this.newRegex = "";
+                    this.newRegexAttribute = "body.message";
                 }
             },
             switchRuleType: function () {
