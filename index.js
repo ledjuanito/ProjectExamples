@@ -138,7 +138,7 @@ $(document).ready(function () {
                 rule.active = !rule.active;
             },
             deleteRule: function (id) {
-                this.eventRuleList = this.eventRuleList.filter((X) => 
+                this.eventRuleList = this.eventRuleList.filter((X) =>
                     X.id != id
                 )
             }
@@ -155,10 +155,69 @@ $(document).ready(function () {
                 this.eventRuleList[id].active = !this.eventRuleList[id].active;
             },
             deleteRule: function (id) {
-                this.labelRuleList = this.labelRuleList.filter((X) => 
+                this.labelRuleList = this.labelRuleList.filter((X) =>
                     X.id != id
                 )
             }
         }
     });
+
+
+
+    // document.onclick = function() {
+    // _idleSecondsCounter = 0;
+    // };
+    // document.onmousemove = function() {
+    // _idleSecondsCounter = 0;
+    // };
+    // document.onkeypress = function() {
+    // _idleSecondsCounter = 0;
+    // };
+
+
+
+
+
 });
+
+
+var autorefresh = 10;
+var alarmTrigger = 5;
+var _idleSecondsCounter = 0;
+var myInterval;
+
+function CheckIdleTime() {
+    _idleSecondsCounter++;
+    if (_idleSecondsCounter == autorefresh - alarmTrigger) {
+        $("#exampleModal").modal();
+    } else if (_idleSecondsCounter >= autorefresh) {
+        $("#exampleModal").modal('hide');
+        console.log('Perform autoRefresh at ', new Date());
+        resetCounter();
+    }
+}
+function skipRefresh() {
+    console.log('skip autorefresh at ', new Date());
+    resetCounter();
+}
+
+function skipRefreshAndTurnOff() {
+    document.getElementById('mySelect').value = 'off';
+    console.log('skip autorefresh and turned off at ', new Date());
+    window.clearInterval(myInterval);
+    resetCounter();
+}
+
+function resetCounter() {
+    _idleSecondsCounter = 0;
+}
+
+function myFunction() {
+    var val = document.getElementById("mySelect").value;
+    if (val == 'off') {
+        skipRefreshAndTurnOff();
+    } else {
+        myInterval = window.setInterval(CheckIdleTime, 1000);
+        resetCounter();
+    }
+}
